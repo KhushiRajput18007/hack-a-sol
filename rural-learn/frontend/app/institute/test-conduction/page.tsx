@@ -5,7 +5,7 @@ import Link from 'next/link'
 import {
   AcademicCapIcon,
   ArrowLeftIcon,
-  CipboardDocumentListIcon,
+  ClipboardDocumentListIcon,
   ClockIcon,
   ShieldExclamationIcon,
   BellAlertIcon
@@ -30,14 +30,14 @@ type InstituteTestSummary = {
   class?: string
   examType?: string
   subjects?: string[]
-  startTime?: tring
+  startTime?: string
   endTime?: string
   mode?: string
 }
 
 export default function TestConductionPage() {
   const { data, isLoading, error } = useQuery(['institute-tests'], async () => {
-    const res = await fetch(`${API_BASE}/institute/tests`)
+    const res = await fetch(`${APIBASE}/institute/tests`)
     if (!res.ok) throw new Error('Failed to load tests')
     return res.json() as Promise<{ success: boolean; tests: InstituteTestSummary[] }>
   })
@@ -181,10 +181,10 @@ export default function TestConductionPage() {
             {isLoading && (
               <div className="text-xs text-slate-400">Loading tests…</div>
             )}
-            {error && !isLoading && (
+            {Boolean(error) && !isLoading && (
               <div className="text-xs text-red-400">Failed to load tests from backend.</div>
             )}
-            {!isLoading && !error && tests.map((test, index) => (
+            {!isLoading && !Boolean(error) && tests.map((test, index) => (
               <motion.article
                 key={test._id}
                 initial={{ opacity: 0, y: 8 }}

@@ -228,30 +228,32 @@ export default function PaperGenerationPage() {
             This page is connected to <code className="font-mono">/api/institute/tests/generate-paper</code> and{' '}
             <code className="font-mono">/api/institute/paper</code>. Generated papers will appear in the backend list.
           </p>
-          <div className="mt-2 grid gap-2 md:grid-cols-2 text-[11px]">
-            <div className="rounded-xl bg-slate-950/80 border border-white/10 p-3">
-              <p className="mb-2 text-slate-200 text-xs">Recent generated papers</p>
-              {isLoading && <p className="text-slate-500">Loading papers…</p>}
-              {error && !isLoading && <p className="text-red-400">Failed to load papers.</p>}
-              {!isLoading && !error && papers.length === 0 && (
-                <p className="text-slate-500">No papers generated yet.</p>
-              )}
-              {!isLoading && !error && papers.length > 0 && (
-                <ul className="space-y-1">
-                  {papers.slice(0, 4).map(p => (
-                    <li key={p._id} className="flex items-center justify-between text-[11px] text-slate-200">
-                      <span>
-                        {p.class || 'Class ?'} • {p.subject || 'Subject'}
-                      </span>
-                      <span className="text-slate-400">
-                        {p.totalMarks ? `${p.totalMarks} marks` : ''}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
-          </div>
+<div className="mt-2 grid gap-2 md:grid-cols-2 text-[11px]">
+  <div className="mb-2 text-slate-200 text-xs">Recent generated</div>
+  <div>
+    {error != null && !isLoading && (
+      <p className="text-red-400">{error instanceof Error ? error.message : 'Failed to load papers.'}</p>
+    )}
+
+    {!isLoading && !error && papers.length === 0 && (
+      <p className="text-slate-500">No papers generated yet.</p>
+    )}
+    {!isLoading && !error && papers.length > 0 && (
+      <ul className="space-y-1">
+        {papers.slice(0, 4).map(p => (
+          <li key={p._id} className="flex items-center justify-between text-[11px] text-slate-200">
+            <span>
+              {p.class || 'Class ?'} • {p.subject || 'Subject'}
+            </span>
+            <span className="text-slate-400">
+              {p.totalMarks ? `${p.totalMarks} marks` : ''}
+            </span>
+          </li>
+        ))}
+      </ul>
+    )}
+  </div>
+</div>
         </section>
       </main>
     </div>

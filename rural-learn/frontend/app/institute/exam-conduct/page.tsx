@@ -185,10 +185,10 @@ export default function ExamConductPage() {
             {isLoading && (
               <div className="text-slate-400 text-xs">Loading exams…</div>
             )}
-            {error && !isLoading && (
+            {Boolean(error) && !isLoading && (
               <div className="text-red-400 text-xs">Failed to load exams from backend.</div>
             )}
-            {!isLoading && !error && exams.length === 0 && (
+            {!isLoading && !Boolean(error) && exams.length === 0 && (
               <>
                 {schedule.map((row, index) => (
                   <motion.article
@@ -209,7 +209,7 @@ export default function ExamConductPage() {
                 ))}
               </>
             )}
-            {!isLoading && !error && exams.map((exam, index) => (
+            {!isLoading && !Boolean(error) && exams.map((exam, index) => (
               <motion.article
                 key={exam._id}
                 initial={{ opacity: 0, y: 8 }}

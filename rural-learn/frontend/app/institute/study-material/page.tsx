@@ -4,14 +4,14 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import {
   AcademicCapIcon,
-  ArrowLetIcon,
+  ArrowLeftIcon,
   BookOpenIcon,
   LinkIcon,
   ArrowDownTrayIcon
 } from '@heroicons/react/24/outline'
 import { useQuery } from 'react-query'
 
-const API_BASE = procss.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api'
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api'
 
 const instituteNavItems = [
   { href: '/institute/sudent-enrollment', label: 'Student enrollment' },
@@ -34,10 +34,10 @@ type MaterialSummary = {
 }
 
 export default function StudyMaterialPage() {
-  const { data, isLoading, error } = useQuery(['institute-materials'], async () => {
+  const { data, isLoading, error } = useQuery<{ success: boolean; materials: MaterialSummary[] }, Error>(['institute-materials'], async () => {
     const res = await fetch(`${API_BASE}/institute/material`)
     if (!res.ok) throw new Error('Failed to load materials')
-    return res.json() as Promise<{ success: boolean; materials: MaterialSummary[] }>
+    return res.json()
   })
 
   const materials: MaterialSummary[] = data?.materials || []
@@ -83,7 +83,7 @@ export default function StudyMaterialPage() {
             >
               Keep all class notes and PDFs in one clean library.
             </motion.h1>
-            <motin.p
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.05 }}
@@ -99,7 +99,7 @@ export default function StudyMaterialPage() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="mt-4 flex flex-wrap gap-3 text-xs"
             >
-              <span classNam="px-3 py-1.5 rounded-full bg-emerald-500/15 text-emerald-100 border border-emerald-400/40">
+              <span className="px-3 py-1.5 rounded-full bg-emerald-500/15 text-emerald-100 border border-emerald-400/40">
                 Works with low bandwidth
               </span>
               <span className="px-3 py-1.5 rounded-full bg-sky-500/15 text-sky-100 border border-sky-400/40">
@@ -152,7 +152,7 @@ export default function StudyMaterialPage() {
                     <p className="text-[10px] text-slate-400">
                       {m.class || 'Class ?'} • {m.subject || '—'} {m.chapter ? `• ${m.chapter}` : ''}
                     </p>
-                    {m.aiSmmary && (
+                    {m.aiSummary && (
                       <p className="mt-1 text-[10px] text-slate-300 line-clamp-2">{m.aiSummary}</p>
                     )}
                   </div>
