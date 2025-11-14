@@ -250,29 +250,37 @@ export default function DashboardPage() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="mt-8"
         >
-          <h2 className="text-xl font-bold text-slate-50 mb-6">Quick Actions</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <h2 className="text-xl font-bold text-gray-900 mb-6">Quick Actions</h2>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             <Link href="/courses/generate" className="card hover:shadow-lg transition-shadow cursor-pointer">
               <div className="text-center">
                 <RocketLaunchIcon className="h-12 w-12 text-primary-600 mx-auto mb-4" />
-                <h3 className="font-medium text-slate-50 mb-2">Generate AI Course</h3>
-                <p className="text-sm text-slate-300">Create personalized learning content</p>
+                <h3 className="font-medium text-gray-900 mb-2">Generate AI Course</h3>
+                <p className="text-sm text-gray-600">Create personalized learning content</p>
               </div>
             </Link>
 
             <Link href="/mock-tests/generate" className="card hover:shadow-lg transition-shadow cursor-pointer">
               <div className="text-center">
                 <ChartBarIcon className="h-12 w-12 text-green-600 mx-auto mb-4" />
-                <h3 className="font-medium text-slate-50 mb-2">Take Mock Test</h3>
-                <p className="text-sm text-slate-300">Test your knowledge with AI predictions</p>
+                <h3 className="font-medium text-gray-900 mb-2">Take Mock Test</h3>
+                <p className="text-sm text-gray-600">Test your knowledge with AI predictions</p>
               </div>
             </Link>
 
             <Link href="/career" className="card hover:shadow-lg transition-shadow cursor-pointer">
               <div className="text-center">
                 <TrophyIcon className="h-12 w-12 text-yellow-600 mx-auto mb-4" />
-                <h3 className="font-medium text-slate-50 mb-2">Career Guidance</h3>
-                <p className="text-sm text-slate-300">Get AI-powered career roadmaps</p>
+                <h3 className="font-medium text-gray-900 mb-2">Career Guidance</h3>
+                <p className="text-sm text-gray-600">Get AI-powered career roadmaps</p>
+              </div>
+            </Link>
+
+            <Link href="/institute" className="card hover:shadow-lg transition-shadow cursor-pointer">
+              <div className="text-center">
+                <AcademicCapIcon className="h-12 w-12 text-purple-600 mx-auto mb-4" />
+                <h3 className="font-medium text-gray-900 mb-2">Institute Panel</h3>
+                <p className="text-sm text-gray-600">Enrollment, tests & exam management</p>
               </div>
             </Link>
           </div>
