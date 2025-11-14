@@ -13,7 +13,7 @@ import {
   CheckIcon,
   ArrowRightIcon,
   StarIcon,
-  TrendingUpIcon,
+  ArrowTrendingUpIcon,
   SparklesIcon,
   GlobeAltIcon
 } from '@heroicons/react/24/outline'
@@ -28,7 +28,7 @@ const AnimatedBlob = ({ delay = 0 }) => (
   </motion.div>
 )
 
-const FloatingIcon = ({ icon: Icon, delay = 0, className = '' }) => (
+const FloatingIcon = ({ icon: Icon, delay = 0, className = '' }: { icon: React.ComponentType<{ className?: string }>, delay?: number, className?: string }) => (
   <motion.div
     animate={{ y: [0, -10, 0] }}
     transition={{ duration: 3, delay, repeat: Infinity }}
@@ -38,7 +38,7 @@ const FloatingIcon = ({ icon: Icon, delay = 0, className = '' }) => (
   </motion.div>
 )
 
-const Counter = ({ end, duration = 2 }) => {
+const Counter = ({ end, duration = 2 }: { end: number, duration?: number }) => {
   const [count, setCount] = useState(0)
   
   useEffect(() => {
@@ -296,7 +296,7 @@ export default function HomePage() {
               <div className="grid grid-cols-2 gap-4 h-full">
                 <FloatingIcon icon={LightBulbIcon} delay={0} className="text-yellow-400" />
                 <FloatingIcon icon={StarIcon} delay={0.5} className="text-purple-400 justify-end" />
-                <FloatingIcon icon={TrendingUpIcon} delay={1} className="text-cyan-400" />
+                <FloatingIcon icon={ArrowTrendingUpIcon} delay={1} className="text-cyan-400" />
                 <FloatingIcon icon={SparklesIcon} delay={1.5} className="text-pink-400 justify-end" />
               </div>
             </motion.div>
